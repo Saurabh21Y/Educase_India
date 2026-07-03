@@ -22,21 +22,36 @@ export default function Register() {
     isAgency: 'yes',
   })
 
-  // Phone validation state
-  const [phoneError, setPhoneError] = useState('')
+  // Phone & Password validation states
+  const [phoneError,    setPhoneError]    = useState('')
+  const [passwordError, setPasswordError] = useState('')
+
+  // ── Password rules ──
+  const validatePassword = (val) => {
+    if (val.length === 0)   return ''
+    if (val.length < 6)     return 'Password must be at least 6 characters'
+    const hasLetter = /[a-zA-Z]/.test(val)
+    const hasNumber = /[0-9]/.test(val)
+    if (!hasLetter) return 'Password must contain at least one letter'
+    if (!hasNumber) return 'Password must contain at least one number'
+    return ''
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
 
-    // Phone: only allow digits, and validate max 10
+    // Phone: only allow digits, validate max 10
     if (name === 'phone') {
-      const digitsOnly = value.replace(/\D/g, '')   // strip non-digits
+      const digitsOnly = value.replace(/\D/g, '')
       setForm((prev) => ({ ...prev, phone: digitsOnly }))
-      if (digitsOnly.length > 10) {
-        setPhoneError('Only 10 digit ph no')
-      } else {
-        setPhoneError('')
-      }
+      setPhoneError(digitsOnly.length > 10 ? 'Only 10 digit ph no' : '')
+      return
+    }
+
+    // Password: real-time validation
+    if (name === 'password') {
+      setForm((prev) => ({ ...prev, password: value }))
+      setPasswordError(validatePassword(value))
       return
     }
 
@@ -44,12 +59,14 @@ export default function Register() {
   }
 
   const isValid =
-    form.fullName.trim() &&
-    form.phone.trim()    &&
-    form.phone.length <= 10 &&   // must be ≤ 10 digits
-    !phoneError              &&   // no active phone error
-    form.email.trim()    &&
-    form.password.trim()
+    form.fullName.trim()     &&
+    form.phone.trim()        &&
+    form.phone.length <= 10  &&
+    !phoneError              &&
+    form.email.trim()        &&
+    form.password.trim()     &&
+    !passwordError           &&
+    form.password.length >= 6
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -61,6 +78,17 @@ export default function Register() {
     }
     if (form.phone.length !== 10) {
       setPhoneError(`Only 10 digit ph no (entered: ${form.phone.length})`)
+      return
+    }
+
+    // ── Submit-time password validation ──
+    const pwdErr = validatePassword(form.password)
+    if (form.password.length === 0) {
+      setPasswordError('Password is required')
+      return
+    }
+    if (pwdErr) {
+      setPasswordError(pwdErr)
       return
     }
 
@@ -121,10 +149,11 @@ export default function Register() {
           label="Password"
           name="password"
           type="password"
-          placeholder="Marry Doe"
+          placeholder="Min 6 chars, letters & numbers"
           value={form.password}
           onChange={handleChange}
           required
+          error={passwordError}
         />
         <Input
           label="Company name"
