@@ -1,0 +1,374 @@
+/* =============================================
+   PopX Global Styles
+   Colors:
+     #F7F8F9          → Light gray background
+     #6C25FF          → Purple primary
+     #FFFFFF          → White
+     #1D2226          → Near-black text
+     rgba(108,37,255,0.29) → Semi-purple (#6C25FF4B)
+   Font: Rubik (400, 500, 700)
+   Viewport: 375 × 812
+============================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  background-color: #dde0e6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+/* ── Phone frame wrapper – fits one screen ── */
+.phone-frame {
+  width: 375px;
+  height: calc(100vh - 40px);
+  max-height: 812px;
+  background-color: #F7F8F9;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+  border-radius: 32px;
+}
+
+/* ===================
+   HOME PAGE
+=================== */
+.home-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 24px 40px;
+  background-color: #F7F8F9;
+}
+
+.home-content {
+  margin-bottom: 28px;
+}
+
+.home-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: #1D2226;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.home-subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 1.55;
+}
+
+.home-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ===================
+   BUTTONS
+=================== */
+.btn-primary {
+  width: 100%;
+  padding: 15px;
+  border-radius: 6px;
+  border: none;
+  background-color: #6C25FF;
+  color: #FFFFFF;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: opacity 0.18s ease, transform 0.1s ease;
+}
+.btn-primary:hover  { opacity: 0.88; }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary {
+  width: 100%;
+  padding: 15px;
+  border-radius: 6px;
+  border: none;
+  background-color: rgba(108, 37, 255, 0.29); /* #6C25FF4B */
+  color: #1D2226;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: opacity 0.18s ease, transform 0.1s ease;
+}
+.btn-secondary:hover  { opacity: 0.82; }
+.btn-secondary:active { transform: scale(0.98); }
+
+/* ===================
+   FORM PAGES  (Login / Register)
+=================== */
+.form-page {
+  flex: 1;
+  background-color: #F7F8F9;
+  padding: 32px 24px 36px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: #1D2226;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 1.55;
+  margin-bottom: 30px;
+}
+
+/* -- Floating-label input -- */
+.input-wrapper {
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.input-wrapper label {
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  background-color: #F7F8F9;
+  padding: 0 4px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6C25FF;
+  z-index: 1;
+  line-height: 1;
+}
+
+.input-wrapper label .req {
+  color: #e91e8c;
+  margin-left: 1px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 6px;
+  background-color: transparent;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1D2226;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-wrapper input::placeholder {
+  color: #9ca3af;
+  font-size: 14px;
+}
+.input-wrapper input:focus {
+  border-color: #6C25FF;
+}
+
+.form-spacer { flex: 1; }
+
+/* -- Input error state (e.g. phone > 10 digits) -- */
+.input-wrapper input.input-error {
+  border-color: #e53935;
+  background-color: #fff5f5;
+}
+.input-wrapper input.input-error:focus {
+  border-color: #e53935;
+}
+.input-wrapper label.label-error {
+  color: #e53935;
+}
+.input-error-msg {
+  margin-top: 5px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #e53935;
+  padding-left: 4px;
+}
+
+/* General login error banner (no account found etc.) */
+.login-general-error {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  background-color: #fff5f5;
+  border: 1.5px solid #e53935;
+  border-radius: 6px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #e53935;
+  line-height: 1.4;
+}
+
+/* ===================
+   REGISTER – Radio group
+=================== */
+.agency-label {
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1D2226;
+  margin-bottom: 12px;
+}
+.agency-label .req { color: #e91e8c; }
+
+.radio-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 36px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1D2226;
+  cursor: pointer;
+}
+
+.radio-option input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #c5c5c5;
+  cursor: pointer;
+  transition: border-color 0.2s, border-width 0.1s;
+  flex-shrink: 0;
+}
+.radio-option input[type='radio']:checked {
+  border-color: #6C25FF;
+  border-width: 7px;
+}
+
+/* ===================
+   ACCOUNT SETTINGS PAGE
+=================== */
+.account-page {
+  flex: 1;
+  background-color: #F7F8F9;
+  display: flex;
+  flex-direction: column;
+}
+
+.acct-header {
+  padding: 20px 24px 18px;
+  background-color: #FFFFFF;
+  border-bottom: 1.5px solid #e5e7eb;
+}
+.acct-header-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: #1D2226;
+}
+
+.acct-profile-card {
+  padding: 24px;
+  background-color: #F7F8F9;
+  border-bottom: 1.5px dashed #d1d5db;
+}
+
+.acct-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.avatar-initials {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6C25FF 0%, #9c6bff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rubik', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #FFFFFF;
+  user-select: none;
+}
+
+.avatar-cam {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #6C25FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(108,37,255,0.4);
+}
+.avatar-cam svg {
+  width: 13px;
+  height: 13px;
+  fill: #FFFFFF;
+}
+
+.acct-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1D2226;
+  margin-bottom: 3px;
+}
+.acct-email {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.acct-bio {
+  font-size: 16px;
+  font-weight: 400;
+  color: #1D2226;
+  line-height: 1.6;
+}
+
+.acct-body {
+  flex: 1;
+  border-bottom: 1.5px dashed #d1d5db;
+}

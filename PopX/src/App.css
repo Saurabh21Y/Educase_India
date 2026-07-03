@@ -1,0 +1,7 @@
+/* App.css – reset default Vite styles */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
